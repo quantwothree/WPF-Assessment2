@@ -54,7 +54,8 @@ namespace Assessment_2_Project
         private void GetContractorsButton_Click(object sender, RoutedEventArgs e)
         {
             List<Contractor> contractorsList = projectManager.getContractors();
-            MiddleListBox.ItemsSource = contractorsList;
+            ContractorListBox.ItemsSource = null; // reset the the list so that ListBox recognises the changes to the list so that everytime the button is click the lastest list is shown 
+            ContractorListBox.ItemsSource = contractorsList;
 
         }
 
@@ -81,6 +82,60 @@ namespace Assessment_2_Project
                 Job job = new Job(JobTitleTextBox.Text, JobDatePicker.SelectedDate.Value,JobCost); // same with HourlyRate as above, it needs to be an int, .Text returns a string
                 projectManager.addJob(job);
                 MessageBox.Show("Job added!");
+            }
+        }
+
+        private void GetJobsButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Job> jobsList = projectManager.getJobs();
+            JobListBox.ItemsSource = null; // reset the the list so that JobListBox recognises the changes to the list so that everytime the button is click the lastest list is shown 
+            JobListBox.ItemsSource= jobsList;
+        }
+
+        private void CompleteJobButton_Click(object sender, RoutedEventArgs e)
+        {
+            Job selectedItem = JobListBox.SelectedItem as Job; // what does this mean ?
+            if (selectedItem == null)
+            {
+                // if no jobs selected
+                MessageBox.Show("Please choose a job to complete"); 
+            }
+            else
+            {
+                projectManager.completeJob(selectedItem);
+                MessageBox.Show("Job is comepleted!"); 
+            }
+        }
+
+        private void AssignJobButton_Click(object sender, RoutedEventArgs e)
+        {
+            Job selectedJob = JobListBox.SelectedItem as Job;
+            if (selectedJob == null)
+            {
+                // if no jobs selected
+                MessageBox.Show("Please choose a job to assign");
+            }
+            else
+            {
+                List<Contractor> contractorsList = projectManager.getContractors();
+                ContractorListBox.ItemsSource = contractorsList;
+                if (contractorsList != null)
+                {
+                    Contractor selectedContractor = ContractorListBox.SelectedItem as Contractor;
+                    if (selectedContractor == null)
+                    {
+                        MessageBox.Show("Please choose a contractor to assign");
+                    }
+                    else
+                    {
+                        projectManager.assignJob(selectedContractor, selectedJob);
+                        MessageBox.Show(selectedContractor.ToString() + "assign to" + selectedJob.ToString());
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("There is no contractors"); 
+                }
             }
         }
     }

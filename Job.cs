@@ -17,6 +17,7 @@ namespace Assessment_2_Project
         public Job()
         { 
             this.ContractorAssigned = new Contractor();
+            this.Completed = false; 
         }
         public Job (string Title, DateTime Date, int Cost)
         {
