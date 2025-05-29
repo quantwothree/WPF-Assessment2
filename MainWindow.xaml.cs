@@ -13,9 +13,11 @@ namespace Assessment_2_Project
 {
     public partial class MainWindow : Window
     {
+        private ProjectManager projectManager = new ProjectManager();
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
@@ -44,7 +46,41 @@ namespace Assessment_2_Project
             else
             {
                 Contractor contractor = new Contractor(FirstNameTextBox.Text, LastNameTextBox.Text, (DOBPicker.SelectedDate.Value), HourlyRate);
+                projectManager.addContractor(contractor);
                 MessageBox.Show("Contractor added!"); 
+            }
+        }
+
+        private void GetContractorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Contractor> contractorsList = projectManager.getContractors();
+            MiddleListBox.ItemsSource = contractorsList;
+
+        }
+
+        private void JobSubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(JobTitleTextBox.Text) || int.TryParse(JobTitleTextBox.Text, out int result))
+            {
+                MessageBox.Show("Please enter a job name");
+            }
+            else if (string.IsNullOrEmpty(JobCostTextBox.Text))
+            {
+                MessageBox.Show("Please enter job's cost");
+            }
+            else if (!int.TryParse(JobCostTextBox.Text, out int JobCost)) // if job cost is not a number then show massage, if is a number then put in JobCost
+            {
+                MessageBox.Show("Please enter job's cost");
+            }
+            else if (JobDatePicker.SelectedDate == null)
+            {
+                MessageBox.Show("Please select a date for the job");
+            }
+            else
+            {
+                Job job = new Job(JobTitleTextBox.Text, JobDatePicker.SelectedDate.Value,JobCost); // same with HourlyRate as above, it needs to be an int, .Text returns a string
+                projectManager.addJob(job);
+                MessageBox.Show("Job added!");
             }
         }
     }

@@ -16,17 +16,18 @@ namespace Assessment_2_Project
 
         public Job()
         { 
-            Contractor ContractorAssigned = new Contractor();
+            this.ContractorAssigned = new Contractor();
         }
-        public Job (string Title, DateTime Date, int Cost, bool Completed, Contractor ContractorAssigned)
+        public Job (string Title, DateTime Date, int Cost)
         {
             this.Title = Title;
             this.Date = Date;   
             this.Cost = Cost;   
-            this.Completed = Completed; 
-            this.ContractorAssigned = ContractorAssigned;
         }
-
+        public override string ToString() // To display proper text on MiddleListBox, changing how ToString() behave on a Job object 
+        {
+            return $"{Title} {Date} - ${Cost}";
+        }
 
 
     }

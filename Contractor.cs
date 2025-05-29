@@ -26,7 +26,10 @@ namespace Assessment_2_Project
             this.StartDate = StartDate;
             this.HourlyRate = HourlyRate;
         }
-
+        public override string ToString() // To display proper text on MiddleListBox, changing how ToString() behave on a Contractor object 
+        {
+            return $"{FirstName} {LastName} - ${HourlyRate}/hr";
+        }
 
     }
 }
