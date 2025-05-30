@@ -25,7 +25,7 @@ namespace Assessment_2_Project
             this.Date = Date;   
             this.Cost = Cost;   
         }
-        public override string ToString() // To display proper text on MiddleListBox, changing how ToString() behave on a Job object 
+        public override string ToString() // To display proper text on ListBox, changing how ToString() behave on a Job object 
         {
             return $"{Title} {Date} - ${Cost}";
         }

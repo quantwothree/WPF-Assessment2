@@ -94,15 +94,15 @@ namespace Assessment_2_Project
 
         private void CompleteJobButton_Click(object sender, RoutedEventArgs e)
         {
-            Job selectedItem = JobListBox.SelectedItem as Job; // what does this mean ?
-            if (selectedItem == null)
+            Job selectedJob = JobListBox.SelectedItem as Job; // what does this mean ?
+            if (selectedJob == null)
             {
                 // if no jobs selected
                 MessageBox.Show("Please choose a job to complete"); 
             }
             else
             {
-                projectManager.completeJob(selectedItem);
+                projectManager.completeJob(selectedJob);
                 MessageBox.Show("Job is comepleted!"); 
             }
         }
@@ -129,14 +129,63 @@ namespace Assessment_2_Project
                     else
                     {
                         projectManager.assignJob(selectedContractor, selectedJob);
-                        MessageBox.Show(selectedContractor.ToString() + "assign to" + selectedJob.ToString());
+                        MessageBox.Show(selectedContractor.ToString() + " is assigned to " + selectedJob.ToString());
                     }
                 }
                 else
                 {
                     MessageBox.Show("There is no contractors"); 
                 }
+                projectManager.getAvailableContractors(); // Is this still needed ?
             }
+        }
+
+        private void GetAvailableContractorsButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Contractor> contractors = projectManager.getAvailableContractors();
+            ContractorListBox.ItemsSource = null;
+            ContractorListBox.ItemsSource = contractors; 
+        }
+
+        private void RemoveContractorButton_Click(object sender, RoutedEventArgs e)
+        {
+            Contractor selectedContractor = ContractorListBox.SelectedItem as Contractor;
+            if (selectedContractor == null)
+            {
+                // if no contractor selected
+                MessageBox.Show("Please choose a contractor to remove");
+            }
+            else
+            {
+                projectManager.removeContractor(selectedContractor);
+                MessageBox.Show("Contractor removed!");
+            }
+        
+        }
+
+        private void GetUnassignedJobsButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Job> jobs = projectManager.getUnassignedJobs();
+            JobListBox.ItemsSource = null;
+            JobListBox.ItemsSource = jobs;
+        }
+
+        private void GetJobByCostButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(MaxCostTextBox.Text) || !int.TryParse(MaxCostTextBox.Text, out int MaxCost))
+            {
+                MessageBox.Show("Enter max cost: ");
+            }
+            else if (string.IsNullOrEmpty(MinCostTextBox.Text) || !int.TryParse(MinCostTextBox.Text, out int MinCost))
+            {
+                MessageBox.Show("Enter min cosy: ");
+            }
+            else
+            {
+                List<Job> jobList = projectManager.getJobsByCost(MinCost, MaxCost);
+                JobListBox.ItemsSource = jobList;
+            }
+
         }
     }
 }

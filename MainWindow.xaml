@@ -48,22 +48,20 @@
             <Label Content="Hourly rate:" Grid.Row="3" Grid.Column="0" Margin="5"/>
             <TextBox x:Name="HourlyRateTextBox" Grid.Row="3" Grid.Column="1" Margin="5"/>
 
-            <!-- First pair of buttons -->
-            <!-- First row: Submit + Remove -->
-            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Left" Margin="5">
-                <Button x:Name="SubmitButton" Content="Submit" Width="93" Height="30" Margin="0,0,10,0" Click="SubmitButton_Click"/>
-                <Button x:Name="RemoveContractorButton" Content="Remove Contractor" Width="150" Height="30" Click="AssignJobButton_Click"/>
-            </StackPanel>
+            <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
 
-            <!-- Second row: Big "Get Contractors" button -->
-            <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
-                <Button x:Name="GetContractorsButton" Content="Get Contractors" Width="250" Height="30" Click="GetContractorsButton_Click"/>
-            </StackPanel>
+                <!-- Horizontal buttons -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                    <Button x:Name="SubmitButton" Content="Submit" Width="93" Height="30" Margin="0,0,10,0" Click="SubmitButton_Click"/>
+                    <Button x:Name="RemoveContractorButton" Content="Remove Contractor" Width="150" Height="30" Click="RemoveContractorButton_Click"/>
+                </StackPanel>
 
-            <!-- Third row: Big "Get Available Contractors" button -->
-            <StackPanel Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="5">
+                <!-- Vertical buttons -->
+                <Button x:Name="GetContractorsButton" Content="Get Contractors" Width="250" Height="30" Margin="0,0,0,5" Click="GetContractorsButton_Click"/>
                 <Button x:Name="GetAvailableContractorsButton" Content="Get Available Contractors" Width="250" Height="30" Click="GetAvailableContractorsButton_Click"/>
+
             </StackPanel>
+
 
 
         </Grid>
@@ -123,12 +121,18 @@
                 <Button x:Name="CompleteJobButton" Content="Complete" Width="75" Height="30" Margin="0,0,10,0" Click="CompleteJobButton_Click"/>
                 <Button x:Name="GetJobsButton" Content="Get Jobs" Width="80" Height="30" Click="GetJobsButton_Click"/>
             </StackPanel>
-
             <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Left" Margin="5" Width="255">
-                <!--<Button x:Name="GetUnassignedJobsButton" Content="Get Unassigned Jobs" Height="30" Margin="0,0,0,5" Click="GetUnassignedJobsButton_Click"/>
-                <Button x:Name="GetJobByCostButton" Content="Get Job by Cost" Height="30" Margin="0,0,0,5" Click="GetJobByCostButton_Click"/>-->
-                <Button x:Name="AssignJobButton" Content="Assign Job" Height="30" Click="AssignJobButton_Click"/>
+                <Button x:Name="GetUnassignedJobsButton" Content="Get Unassigned Jobs" Height="30" Margin="0,0,0,5" Click="GetUnassignedJobsButton_Click"/>
+                <Button x:Name="AssignJobButton" Content="Assign Job" Height="30" Margin="0,0,0,5" Click="AssignJobButton_Click"/>
+                <Button x:Name="GetJobByCostButton" Content="Get Job by Cost" Height="30" Margin="0,0,0,10" Click="GetJobByCostButton_Click"/>
+
+                <TextBlock Text="Max Cost:" Margin="0,0,0,2"/>
+                <TextBox x:Name="MaxCostTextBox" Height="25" Margin="0,0,0,5"/>
+
+                <TextBlock Text="Min Cost:" Margin="0,0,0,2"/>
+                <TextBox x:Name="MinCostTextBox" Height="25"/>
             </StackPanel>
+
 
 
         </Grid>

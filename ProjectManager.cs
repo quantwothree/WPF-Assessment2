@@ -28,7 +28,16 @@ namespace Assessment_2_Project
         }
         public List<Contractor> getContractors()
         {
-            return contractors;
+            if (assignedContractors == null)
+            {
+                return contractors;
+            }
+            else
+            {
+                List<Contractor> temporary = new List<Contractor>(contractors);
+                temporary.AddRange(assignedContractors); //AddRange adds a list to another list, its an action, returns nothing
+                return temporary; // temporary now includes contractors + assignedContractors 
+            }
         }
         public void addJob (Job jobToAdd)
         {
@@ -40,7 +49,16 @@ namespace Assessment_2_Project
         }
         public List<Job> getJobs ()
         {
-            return jobs; 
+            if (assignedJobs == null)
+            {
+                return jobs;
+            }
+            else
+            {
+                List<Job> temporary = new List<Job>(jobs);
+                temporary.AddRange(assignedJobs); //AddRange adds a list to another list, its an action, returns nothing
+                return temporary; // temporary now includes jobs + assignedJobs 
+            }
         }
 
         public void assignJob(Contractor contractorToAssign, Job jobToAssign)
