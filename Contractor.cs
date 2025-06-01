@@ -28,7 +28,7 @@ namespace Assessment_2_Project
         }
         public override string ToString() // To display proper text on ListBox, changing how ToString() behave on a Contractor object 
         {
-            return $"{FirstName} {LastName} - ${HourlyRate}/hr";
+            return $"{FirstName} {LastName} - ${HourlyRate}/hr"; //string interpolation 
         }
 
     }

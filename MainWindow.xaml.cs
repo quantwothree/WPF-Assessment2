@@ -46,15 +46,15 @@ namespace Assessment_2_Project
             else
             {
                 Contractor contractor = new Contractor(FirstNameTextBox.Text, LastNameTextBox.Text, (DOBPicker.SelectedDate.Value), HourlyRate);
-                projectManager.addContractor(contractor);
+                projectManager.AddContractor(contractor);
                 MessageBox.Show("Contractor added!"); 
             }
         }
 
         private void GetContractorsButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Contractor> contractorsList = projectManager.getContractors();
-            ContractorListBox.ItemsSource = null; // reset the the list so that ListBox recognises the changes to the list so that everytime the button is click the lastest list is shown 
+            List<Contractor> contractorsList = projectManager.GetContractors();
+            ContractorListBox.ItemsSource = null; // reset the the list so that ListBox recognises the changes to the list, everytime the button is clicked the lastest list is shown 
             ContractorListBox.ItemsSource = contractorsList;
 
         }
@@ -80,21 +80,21 @@ namespace Assessment_2_Project
             else
             {
                 Job job = new Job(JobTitleTextBox.Text, JobDatePicker.SelectedDate.Value,JobCost); // same with HourlyRate as above, it needs to be an int, .Text returns a string
-                projectManager.addJob(job);
+                projectManager.AddJob(job);
                 MessageBox.Show("Job added!");
             }
         }
 
         private void GetJobsButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Job> jobsList = projectManager.getJobs();
+            List<Job> jobsList = projectManager.GetJobs();
             JobListBox.ItemsSource = null; // reset the the list so that JobListBox recognises the changes to the list so that everytime the button is click the lastest list is shown 
             JobListBox.ItemsSource= jobsList;
         }
 
         private void CompleteJobButton_Click(object sender, RoutedEventArgs e)
         {
-            Job selectedJob = JobListBox.SelectedItem as Job; // what does this mean ?
+            Job selectedJob = JobListBox.SelectedItem as Job; // because SelectedItem returns an object (dont know what clas) this is to cast its as Job
             if (selectedJob == null)
             {
                 // if no jobs selected
@@ -102,7 +102,7 @@ namespace Assessment_2_Project
             }
             else
             {
-                projectManager.completeJob(selectedJob);
+                projectManager.CompleteJob(selectedJob);
                 MessageBox.Show("Job is comepleted!"); 
             }
         }
@@ -117,7 +117,7 @@ namespace Assessment_2_Project
             }
             else
             {
-                List<Contractor> contractorsList = projectManager.getContractors();
+                List<Contractor> contractorsList = projectManager.GetContractors();
                 ContractorListBox.ItemsSource = contractorsList;
                 if (contractorsList != null)
                 {
@@ -128,7 +128,7 @@ namespace Assessment_2_Project
                     }
                     else
                     {
-                        projectManager.assignJob(selectedContractor, selectedJob);
+                        projectManager.AssignJob(selectedContractor, selectedJob);
                         MessageBox.Show(selectedContractor.ToString() + " is assigned to " + selectedJob.ToString());
                     }
                 }
@@ -136,13 +136,13 @@ namespace Assessment_2_Project
                 {
                     MessageBox.Show("There is no contractors"); 
                 }
-                projectManager.getAvailableContractors(); // Is this still needed ?
+                projectManager.GetAvailableContractors(); // Is this still needed ?
             }
         }
 
         private void GetAvailableContractorsButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Contractor> contractors = projectManager.getAvailableContractors();
+            List<Contractor> contractors = projectManager.GetAvailableContractors();
             ContractorListBox.ItemsSource = null;
             ContractorListBox.ItemsSource = contractors; 
         }
@@ -157,7 +157,7 @@ namespace Assessment_2_Project
             }
             else
             {
-                projectManager.removeContractor(selectedContractor);
+                projectManager.RemoveContractor(selectedContractor);
                 MessageBox.Show("Contractor removed!");
             }
         
@@ -165,7 +165,7 @@ namespace Assessment_2_Project
 
         private void GetUnassignedJobsButton_Click(object sender, RoutedEventArgs e)
         {
-            List<Job> jobs = projectManager.getUnassignedJobs();
+            List<Job> jobs = projectManager.GetUnassignedJobs();
             JobListBox.ItemsSource = null;
             JobListBox.ItemsSource = jobs;
         }
@@ -182,7 +182,7 @@ namespace Assessment_2_Project
             }
             else
             {
-                List<Job> jobList = projectManager.getJobsByCost(MinCost, MaxCost);
+                List<Job> jobList = projectManager.GetJobsByCost(MinCost, MaxCost);
                 JobListBox.ItemsSource = jobList;
             }
 

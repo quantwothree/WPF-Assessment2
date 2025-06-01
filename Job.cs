@@ -16,8 +16,8 @@ namespace Assessment_2_Project
 
         public Job()
         { 
-            this.ContractorAssigned = new Contractor();
-            this.Completed = false; 
+            this.ContractorAssigned = new Contractor(); // avoid null when instantiate Job without a Contractor yet 
+            this.Completed = false; // default to false when instantiate 
         }
         public Job (string Title, DateTime Date, int Cost)
         {

@@ -18,15 +18,15 @@ namespace Assessment_2_Project
         List<Job> assignedJobs = new List<Job>();   
 
 
-        public void addContractor (Contractor contractorToAdd)
+        public void AddContractor (Contractor contractorToAdd)
         {
             contractors.Add(contractorToAdd);
         }
-        public void removeContractor (Contractor contractorToRemove)
+        public void RemoveContractor (Contractor contractorToRemove)
         {
             contractors.Remove(contractorToRemove);
         }
-        public List<Contractor> getContractors()
+        public List<Contractor> GetContractors()
         {
             if (assignedContractors == null)
             {
@@ -39,15 +39,15 @@ namespace Assessment_2_Project
                 return temporary; // temporary now includes contractors + assignedContractors 
             }
         }
-        public void addJob (Job jobToAdd)
+        public void AddJob (Job jobToAdd)
         {
             jobs.Add(jobToAdd);
         }
-        public void removeJob (Job jobToRemove) // optional 
+        public void RemoveJob (Job jobToRemove) // optional 
         {
             jobs.Remove(jobToRemove); 
         }
-        public List<Job> getJobs ()
+        public List<Job> GetJobs ()
         {
             if (assignedJobs == null)
             {
@@ -61,7 +61,7 @@ namespace Assessment_2_Project
             }
         }
 
-        public void assignJob(Contractor contractorToAssign, Job jobToAssign)
+        public void AssignJob(Contractor contractorToAssign, Job jobToAssign)
         {
             jobToAssign.ContractorAssigned = contractorToAssign;
 
@@ -73,20 +73,20 @@ namespace Assessment_2_Project
 
             jobs.Remove (jobToAssign);  
         }
-        public void completeJob (Job job)
+        public void CompleteJob (Job job)
         {
             job.Completed = true; 
         }
-        public List<Contractor> getAvailableContractors()
+        public List<Contractor> GetAvailableContractors()
         {
             return contractors; 
         }
 
-        public List<Job> getUnassignedJobs()
+        public List<Job> GetUnassignedJobs()
         {
             return jobs; 
         }
-        public List<Job> getJobsByCost(int minCost, int maxCost)
+        public List<Job> GetJobsByCost(int minCost, int maxCost)
         {
             List<Job> jobsByCostAscending = new List<Job> ();
             foreach (Job job in jobs)
@@ -97,7 +97,7 @@ namespace Assessment_2_Project
                 }
             }
 
-            jobsByCostAscending.Sort((x,y) => x.Cost.CompareTo(y.Cost));
+            jobsByCostAscending.Sort((x,y) => x.Cost.CompareTo(y.Cost)); 
             return jobsByCostAscending;
 
         }
